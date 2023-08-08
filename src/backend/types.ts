@@ -115,7 +115,7 @@ export type Fiber = {
 
   type: {
     name: string;
-  }
+  };
 };
 
 /**
@@ -149,6 +149,9 @@ export interface DevTools {
    * @param priorityLevel
    * @return void
    */
-  onCommitFiberRoot: (rendererID: number, root: FiberRoot, priorityLevel: any) => void;
+  onCommitFiberRoot: (
+    rendererID: number,
+    root: FiberRoot,
+    priorityLevel: any,
+  ) => void;
 }
-
