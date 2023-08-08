@@ -39,7 +39,6 @@ const traverseFiberDOM = (fiberDOM?: FiberRoot) => {
 
   let components: Tree[] = [];
   generateTree(fiberDOM.current.stateNode.current, components);
-  console.log('components', components);
 
   components = JSON.parse(JSON.stringify(components, circular()));
   window.postMessage({

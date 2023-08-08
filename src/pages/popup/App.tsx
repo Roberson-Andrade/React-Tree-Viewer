@@ -11,7 +11,6 @@ const App = (): JSX.Element => {
   const { fitView } = useReactFlow();
 
   function updateComponents(request: { tree?: any }) {
-    console.log('request', request);
     if (request.tree) {
       const [root] = request.tree;
       const nodes: Node<unknown, string | undefined>[] = [];
