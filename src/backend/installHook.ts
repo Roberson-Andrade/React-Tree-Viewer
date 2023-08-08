@@ -60,7 +60,11 @@ let timeoutId: NodeJS.Timeout;
       window.__REACT_DEVTOOLS_GLOBAL_HOOK__.renderers || null;
     const instance = reactInstances?.get(1);
     const devTools = window.__REACT_DEVTOOLS_GLOBAL_HOOK__;
-    let fiberDOM: FiberRoot | undefined = undefined;
+
+    let fiberDOM: FiberRoot | undefined = devTools
+      .getFiberRoots(1)
+      .values()
+      .next().value;
 
     if (instance) {
       const enableReactTreeViewer = (
