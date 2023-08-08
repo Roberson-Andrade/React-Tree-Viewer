@@ -1,4 +1,6 @@
-let LAST_TREE_GENERATED: any;
+import { Tree } from "../@types";
+
+let LAST_TREE_GENERATED: Tree[];
 
 function injectScript(file: string, node: string) {
   const th = document.getElementsByTagName(node)[0];
@@ -19,19 +21,14 @@ chrome.runtime.onMessage.addListener(async (message) => {
 
 window.addEventListener("message", function (event) {
   // only accept messages from the current tab
-  console.log(event.data.type);
   if (event.source != window){
     return;
   }
 
-
-  switch (event.data.type) {
-    case "react-tree-viewer-generate-tree":
-      LAST_TREE_GENERATED = event.data.tree;
+  if(event.data.type === "react-tree-viewer-retrieve-tree"){
+    LAST_TREE_GENERATED = event.data.tree;
       chrome.runtime.sendMessage({ tree: event.data.tree });
-      break;
-  
-    default:
-      break;
+    return;
   }
+
 }, false);
